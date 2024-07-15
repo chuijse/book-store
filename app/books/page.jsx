@@ -1,37 +1,40 @@
-//import { PrismaClient } from '@prisma/client';
-//const prisma = new PrismaClient();
 import Link from "next/link"
-
-export async function getData() {
-  const staticData = await fetch('http://localhost:3000/api/books', {cache: 'no-store'})
-  if (!staticData.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
-  return staticData.json()
-}
-
+import { fetchAllBooks } from "../utils/api"
 
 export default async function BooksPage() { 
-  const books = await getData()
+  const books = await fetchAllBooks()
     
   return (
-    <main>
+    <section style={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "30px",
+    }}>
       <h1>Books</h1>
-      <ul>
+      <p>
+        Aquí encontrarás todos nuestros libros
+      </p>
+      <ul style={{
+          marginTop: "10px",
+          flexDirection: "column",
+          display: "flex",
+          gap: "30px",
+        }}>
         {books?.map((book) => (
           <li key={book.id}>
             <h2>{book.title}</h2>
             <p>{book.author}</p>
             <p>{book.description}</p>
-            <p>${book.price.toFixed(2)}</p>
+            <p>${book.price}</p>
             <Link href={`/books/${book.id}`}>
               <button>{`Ver más sobre ${book.title}`}</button>
             </Link>
           </li>
         ))}
       </ul>
-    </main>
+    </section>
   );
 }
 

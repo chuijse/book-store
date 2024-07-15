@@ -18,6 +18,7 @@ model Book {
   id          Int      @id @default(autoincrement())
   title       String
   author      String
+  bestOf      Boolean  @default(false)
   description String
   price       Float
   createdAt   DateTime @default(now())
