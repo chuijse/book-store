@@ -1,7 +1,10 @@
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
-
+import { SignOut } from "../components/sign-out";
+import { SignIn } from "../components/sign-in";
+import { auth } from "../auth";
+import UserAvatar from "../components/UserAvatar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -36,6 +39,10 @@ export default function RootLayout({ children }) {
               <button>
                 <Link href={"/admin"}>admin</Link>
               </button>
+            </li>
+            <li>
+              <UserAvatar />
+              <SignOut />
             </li>
           </ul>
         </nav>

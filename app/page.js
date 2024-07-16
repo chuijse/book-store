@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { fetchAllBestOFBooks } from "./utils/api";
+import { SignIn } from "../components/sign-in";
 
 export default async function BooksPage() {
   const books = await fetchAllBestOFBooks();
@@ -24,6 +25,7 @@ export default async function BooksPage() {
         inspirará a descubrir nuevas aventuras literarias. ¡Explora, elige y
         déjate llevar por el mágico mundo de las palabras!
       </p>
+      <SignIn />
       <ul
         style={{
           marginTop: "10px",
