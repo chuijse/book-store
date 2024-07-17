@@ -1,5 +1,6 @@
-import bcrypt from "bcryptjs";
+//import bcrypt from "bcryptjs";
 import { PrismaClient } from "@prisma/client";
+import { auth } from "../../../auth";
 
 const prisma = new PrismaClient();
 
@@ -23,6 +24,9 @@ export async function POST(req) {
   }
 }
 
-export async function GET() {
-  return new Response(process.env.SECRET);
-}
+export const GET = auth(function GET(req) {
+  if (req.auth) return new Response(JSON.stringify(req.auth));
+  return new Response(JSON.stringify({ message: "Not authenticated" }), {
+    status: 401,
+  });
+});
