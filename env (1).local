@@ -1,0 +1,6 @@
+NEXT_PUBLIC_API_BASE_URL=http://localhost:3000/api
+SECRET="af12561fb2e9a071b7808d12bcb1ebb7d423afbf3ca247370a1e1567b731b6fcffa06f14a65ac13549f102c0dc654068cc5862054d3bf6b6539ea7766846b4fd"
+NEXTAUTH_URL=http://localhost:3000/
+AUTH_SECRET="pkorn67q7gAtbYp8ykpbG9Oo0mGp/YHXpYVOKajh1kg=" # Added by `npx auth`. Read more: https://cli.authjs.dev
+AUTH_GITHUB_ID=Ov23liropWO8pPTHOdd2
+AUTH_GITHUB_SECRET=275549e44ad3c0514a585f2751add5fb390fc1c6
