@@ -5,7 +5,7 @@ export default async function UserAvatar() {
 
   if (!session?.user) return null;
 
-  console.log(session);
+  //console.log(session, "frontend");
 
   return (
     <div>

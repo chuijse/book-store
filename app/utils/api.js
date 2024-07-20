@@ -72,3 +72,21 @@ export async function deleteBook(id) {
     throw new Error(error.message);
   }
 }
+
+export async function creatUser(user) {
+  try {
+    const response = await fetch(`${baseUrl}/auth/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to Create user");
+    }
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}

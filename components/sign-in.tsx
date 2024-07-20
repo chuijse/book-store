@@ -4,7 +4,7 @@ export function SignIn() {
   return (
     <form
       action={async () => {
-        "use server";
+        "use server"; 
         await signIn("github", { redirectTo: "/admin" });
       }}
     >

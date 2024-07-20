@@ -1,9 +1,11 @@
 import Link from "next/link"
 import { fetchAllBooks } from "../utils/api"
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 export default async function BooksPage() { 
   const books = await fetchAllBooks()
-    
+      
   return (
     <section style={{
       display: "flex",
