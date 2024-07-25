@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { fetchAllBooks } from "../utils/api"
+import { fetchAllBooks, fetchAllUserBooks } from "../utils/api"
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 

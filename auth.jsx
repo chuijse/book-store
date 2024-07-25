@@ -1,4 +1,3 @@
-import { profile } from "console";
 import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import { creatUser } from "./app/utils/api"
@@ -14,6 +13,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       const existingUser = await prisma.user.findUnique({ where: { email: user.email}})
       if (!existingUser) {
       // Create User
+      console.log(user)
       await creatUser({
         email: user.email,
         name: user.name,
@@ -26,12 +26,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return true
     },
     async session({ session, token, user }) {
+      
       // Store the role in the session
       session.user.role = token.role;
       session.user.id = token.id;
+
       return session;
     },
     async jwt({ token, user }) {
+      //console.log(token, "token")
       if (user) { 
         const existingUser = await prisma.user.findUnique({ where: { email: user.email}})
         // Store the role in the JWT token
@@ -40,6 +43,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return token;
     },
+    
   },
 })
 

@@ -1,3 +1,7 @@
+"use server";
+import { headers } from "next/headers";
+import { cookies } from "next/headers";
+
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export async function fetchAllBooks() {
@@ -10,6 +14,20 @@ export async function fetchAllBooks() {
   } catch (error) {
     throw new Error(error.message);
   }
+}
+
+export async function fetchAllUserBooks() {
+  //console.log(cookies().get("authjs.session-token"));
+  const response = await fetch(`${baseUrl}/books/users`, {
+    cache: "no-store",
+    headers: {
+      Cookie: `__Secure-authjs.session-token=${
+        cookies().get("__Secure-authjs.session-token").value
+      }`,
+    },
+    credentials: "include",
+  });
+  return await response.json();
 }
 
 export async function fetchAllBestOFBooks() {
@@ -46,6 +64,9 @@ export async function createBook(newBook) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Cookie: `__Secure-authjs.session-token=${
+          cookies().get("__Secure-authjs.session-token").value
+        }`,
       },
       body: JSON.stringify(newBook),
     });
@@ -62,6 +83,11 @@ export async function deleteBook(id) {
   try {
     const response = await fetch(`${baseUrl}/books/${id}`, {
       method: "DELETE",
+      headers: {
+        Cookie: `authjs.session-token=${
+          cookies().get("authjs.session-token").value
+        }`,
+      },
     });
     console.log(`book id${id} deleted`);
     if (!response.ok) {

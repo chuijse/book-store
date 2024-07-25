@@ -24,6 +24,6 @@
     "**/*.ts",
     "**/*.tsx",
     "middleware.js"
-  ],
+, "auth.jsx"  ],
   "exclude": ["node_modules"]
 }

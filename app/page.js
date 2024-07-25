@@ -39,7 +39,7 @@ export default async function BooksPage() {
             <h2>{book.title}</h2>
             <p>{book.author}</p>
             <p>{book.description}</p>
-            <p>${book.price.toFixed(2)}</p>
+            <p>${book.price}</p>
             <Link href={`/books/${book.id}`}>
               <button>{`Ver más sobre ${book.title}`}</button>
             </Link>
