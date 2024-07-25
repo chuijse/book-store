@@ -37,6 +37,7 @@ export default function Form({session}){
 
       async function handleDelete(id) {
         await deleteBook(id);
+        getBooks()
       }
 
       async function getBooks(){

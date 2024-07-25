@@ -84,8 +84,8 @@ export async function deleteBook(id) {
     const response = await fetch(`${baseUrl}/books/${id}`, {
       method: "DELETE",
       headers: {
-        Cookie: `authjs.session-token=${
-          cookies().get("authjs.session-token").value
+        Cookie: `__Secure-authjs.session-token=${
+          cookies().get("__Secure-authjs.session-token").value
         }`,
       },
     });
